@@ -2,6 +2,9 @@
 import {Item} from './item';
 import {ItemService} from './item.service';
 
+import {Router} from '@angular/router';
+
+
 @Component({
     selector: 'item-list',
     template: `
@@ -12,7 +15,9 @@ import {ItemService} from './item.service';
         (click) = "onSelect(item)"
         ><span>{{item.Title}}</span></li>
     </ul>
+<!--
 <item-detail *ngIf="selectedItem" [item]="selectedItem"></item-detail>
+-->
 `,
     styles: [`
     ul.items li{
@@ -31,7 +36,9 @@ export class ItemListComponent implements OnInit {
     selectedItem: Item;
     errorMessage: string;
 
-    constructor(private itemService: ItemService) { }
+    constructor(private itemService: ItemService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
         //this.getLatest();
@@ -63,6 +70,7 @@ export class ItemListComponent implements OnInit {
 
     onSelect(item: Item) {
         this.selectedItem = item;
-        console.log("item with id " + this.selectedItem.Id +" has been selected.");
+        console.log("item with id " + this.selectedItem.Id + " has been selected.");
+        this.router.navigate(["item", this.selectedItem.Id]);
     }
 }

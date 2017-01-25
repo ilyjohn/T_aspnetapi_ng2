@@ -8,17 +8,31 @@ import {AppComponent} from './app.component';
 import {ItemListComponent} from './item-list.component';
 import {ItemDetailComponent} from './item-detail.component';
 import {ItemService} from './item.service';
-//import {} from '';
+import {HomeComponent} from './home.component';
+
+import {RouterModule} from '@angular/router';
+import {AppRouting} from './app.routing';
+
+import {LoginComponent} from './login.component';
+import {AboutComponent} from './about.component';
+import {PageNotFoundComponent} from './page-not-found.component';
 
 @NgModule({
-    declarations: [AppComponent,
+    declarations: [
+        AppComponent,
         ItemListComponent,
-        ItemDetailComponent
+        ItemDetailComponent,
+        HomeComponent,
+        PageNotFoundComponent,
+        LoginComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule,
         HttpModule,
-        FormsModule
+        FormsModule,
+        RouterModule,
+        AppRouting
     ],
     providers: [ItemService],
     bootstrap: [AppComponent]
