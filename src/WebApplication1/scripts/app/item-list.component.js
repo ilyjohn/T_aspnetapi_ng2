@@ -1,4 +1,4 @@
-System.register(['@angular/core', './item.service'], function(exports_1, context_1) {
+System.register(['@angular/core', './item.service', '@angular/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', './item.service'], function(exports_1, context
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, item_service_1;
+    var core_1, item_service_1, router_1;
     var ItemListComponent;
     return {
         setters:[
@@ -19,11 +19,15 @@ System.register(['@angular/core', './item.service'], function(exports_1, context
             },
             function (item_service_1_1) {
                 item_service_1 = item_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             ItemListComponent = (function () {
-                function ItemListComponent(itemService) {
+                function ItemListComponent(itemService, router) {
                     this.itemService = itemService;
+                    this.router = router;
                 }
                 ItemListComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -53,6 +57,7 @@ System.register(['@angular/core', './item.service'], function(exports_1, context
                 ItemListComponent.prototype.onSelect = function (item) {
                     this.selectedItem = item;
                     console.log("item with id " + this.selectedItem.Id + " has been selected.");
+                    this.router.navigate(["item", this.selectedItem.Id]);
                 };
                 __decorate([
                     core_1.Input(), 
@@ -61,10 +66,10 @@ System.register(['@angular/core', './item.service'], function(exports_1, context
                 ItemListComponent = __decorate([
                     core_1.Component({
                         selector: 'item-list',
-                        template: "\n    <h2>{{title}}</h2>    \n    <ul class=\"items\">\n        <li *ngFor=\"let item of items\"\n        [class.selected] = \"item === selectedItem\"\n        (click) = \"onSelect(item)\"\n        ><span>{{item.Title}}</span></li>\n    </ul>\n<item-detail *ngIf=\"selectedItem\" [item]=\"selectedItem\"></item-detail>\n",
+                        template: "\n    <h2>{{title}}</h2>    \n    <ul class=\"items\">\n        <li *ngFor=\"let item of items\"\n        [class.selected] = \"item === selectedItem\"\n        (click) = \"onSelect(item)\"\n        ><span>{{item.Title}}</span></li>\n    </ul>\n<!--\n<item-detail *ngIf=\"selectedItem\" [item]=\"selectedItem\"></item-detail>\n-->\n",
                         styles: ["\n    ul.items li{\n        cursor: pointer;\n    }\n\n    ul.items li.selected{\n        background-color: #cccccc;\n    }\n"]
                     }), 
-                    __metadata('design:paramtypes', [item_service_1.ItemService])
+                    __metadata('design:paramtypes', [item_service_1.ItemService, router_1.Router])
                 ], ItemListComponent);
                 return ItemListComponent;
             }());
