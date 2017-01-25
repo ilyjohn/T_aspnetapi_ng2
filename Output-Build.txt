@@ -1,0 +1,16 @@
+﻿1>------ Build started: Project: WebApplication1, Configuration: Debug Any CPU ------
+1>  C:\Program Files\dotnet\dotnet.exe build "D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1" --configuration Debug --no-dependencies
+1>  Project WebApplication1 (.NETFramework,Version=v4.6.1) will be compiled because inputs were modified
+1>  Compiling WebApplication1 for .NETFramework,Version=v4.6.1
+1>D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1\project.lock.json(1): warning NU1006: Dependencies in project.json were modified. Please run "dotnet restore" to generate a new lock file.
+1>D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1\project.json(13,51): warning NU1007: Dependency specified was Microsoft.EntityFrameworkCore.Design >= 1.1.0 but ended up with Microsoft.EntityFrameworkCore.Design 1.0.0-preview2-final.
+1>D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1\project.json(14,54): warning NU1007: Dependency specified was Microsoft.EntityFrameworkCore.SqlServer >= 1.1.0 but ended up with Microsoft.EntityFrameworkCore.SqlServer 1.0.0.
+1>D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1\project.json(13,51): warning NU1012: Dependency conflict. WebApplication1 1.0.0 expected Microsoft.EntityFrameworkCore.Design >= 1.1.0 but received 1.0.0-preview2-final
+1>D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1\project.json(14,54): warning NU1012: Dependency conflict. WebApplication1 1.0.0 expected Microsoft.EntityFrameworkCore.SqlServer >= 1.1.0 but received 1.0.0
+1>D:\e\ng2\T_aspnetapi_ng2\src\WebApplication1\project.json(18,43): warning NU1012: Dependency conflict. Microsoft.EntityFrameworkCore 1.1.0 expected Microsoft.Extensions.Logging >= 1.1.0 but received 1.0.0
+1>  Compilation succeeded.
+1>      6 Warning(s)
+1>      0 Error(s)
+1>  Time elapsed 00:00:22.5694255
+1>
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
