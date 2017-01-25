@@ -11,8 +11,10 @@ var srcPaths = {
     js: [
         'Scripts/js/**/*.js',
         'node_modules/core-js/client/shim.min.js',
+        'node_modules/core-js/client/shim.min.js.map',
         'node_modules/zone.js/dist/zone.js',
         'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/reflect-metadata/Reflect.js.map',
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/typescript/lib/typescript.js'
     ],
