@@ -3,7 +3,8 @@
     gp_concat = require('gulp-concat'),
     gp_sourcemaps = require('gulp-sourcemaps'),
     gp_typescript = require('gulp-typescript'),
-    gp_uglify = require('gulp-uglify');
+    gp_uglify = require('gulp-uglify'),
+        gp_less = require('gulp-less');
 
 /// Define paths
 var srcPaths = {
@@ -16,21 +17,25 @@ var srcPaths = {
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/reflect-metadata/Reflect.js.map',
         'node_modules/systemjs/dist/system.src.js',
-        'node_modules/typescript/lib/typescript.js'
+        'node_modules/typescript/lib/typescript.js',
+        'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js',
+        'node_modules/moment/moment.js'
     ],
     js_angular: [
         'node_modules/@angular/**'
     ],
     js_rxjs: [
         'node_modules/rxjs/**'
-    ]
+    ],
+    less:['scripts/less/**/*.less']
 };
 
 var destPaths = {
     app: 'wwwroot/app/',
     js: 'wwwroot/js/',
     js_angular: 'wwwroot/js/@angular/',
-    js_rxjs: 'wwwroot/js/rxjs/'
+    js_rxjs: 'wwwroot/js/rxjs/',
+    css:'wwwroot/css/'
 };
 
 // Compile, minify and create sourcemaps all TypeScript files and place them to wwwroot/app, together with their js.map files.
@@ -48,6 +53,17 @@ gulp.task('app_clean', function () {
     return gulp.src(destPaths.app + "*.*", { read: false })
     .pipe(gp_clean({ force: true }));
 });
+
+gulp.task('less', ['less_clean'], function () {
+    return gulp.src(srcPaths.less)
+    .pipe(gp_less())
+    .pipe(gulp.dest(destPaths.css));
+})
+
+gulp.task('less_clean', function () {
+    return gulp.src(destPaths.css + "*.*", { read: false })
+    .pipe(gp_clean({ force: true }));
+})
 
 // Copy all JS files from external libraries to wwwroot/js
 gulp.task('js', function () {
@@ -67,11 +83,11 @@ gulp.task('js_clean', function () {
 
 // Watch specified files and define what to do upon file changes
 gulp.task('watch', function () {
-    gulp.watch([srcPaths.app, srcPaths.js], ['app', 'js']);
+    gulp.watch([srcPaths.app, srcPaths.js,srcPaths.less], ['app', 'js','less']);
 });
 
 // Global cleanup task
-gulp.task('cleanup', ['app_clean', 'js_clean']);
+gulp.task('cleanup', ['app_clean', 'js_clean','less_clean']);
 
 // Define the default task so it will launch all other tasks
-gulp.task('default', ['app', 'js', 'watch']);
+gulp.task('default', ['app', 'js', 'less','watch']);

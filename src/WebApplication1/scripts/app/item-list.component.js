@@ -35,15 +35,15 @@ System.register(['@angular/core', './item.service', '@angular/router'], function
                     var s = null;
                     switch (this.class) {
                         case "latest":
-                            this.title = "Latest item";
+                            this.title = "Latest items";
                             s = this.itemService.getLatest();
                             break;
                         case "most-viewed":
-                            this.title = "Most viewed item";
+                            this.title = "Most viewed items";
                             s = this.itemService.getMostViewed();
                             break;
                         case "random":
-                            this.title = "Random item";
+                            this.title = "Random items";
                             s = this.itemService.getRandom();
                             break;
                     }
@@ -66,7 +66,7 @@ System.register(['@angular/core', './item.service', '@angular/router'], function
                 ItemListComponent = __decorate([
                     core_1.Component({
                         selector: 'item-list',
-                        template: "\n    <h2>{{title}}</h2>    \n    <ul class=\"items\">\n        <li *ngFor=\"let item of items\"\n        [class.selected] = \"item === selectedItem\"\n        (click) = \"onSelect(item)\"\n        ><span>{{item.Title}}</span></li>\n    </ul>\n<!--\n<item-detail *ngIf=\"selectedItem\" [item]=\"selectedItem\"></item-detail>\n-->\n",
+                        template: "\n    <h3>{{title}}</h3>    \n    <ul class=\"items\">\n        <li *ngFor=\"let item of items\"\n        [class.selected] = \"item === selectedItem\"\n        (click) = \"onSelect(item)\"\n        >\n            <div class=\"title\">{{item.Title}}</div>\n            <div class=\"description\">{{item.Description}}</div>\n        </li>\n    </ul>\n<!--\n<item-detail *ngIf=\"selectedItem\" [item]=\"selectedItem\"></item-detail>\n-->\n",
                         styles: ["\n    ul.items li{\n        cursor: pointer;\n    }\n\n    ul.items li.selected{\n        background-color: #cccccc;\n    }\n"]
                     }), 
                     __metadata('design:paramtypes', [item_service_1.ItemService, router_1.Router])

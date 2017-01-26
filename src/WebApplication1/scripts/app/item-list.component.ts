@@ -8,12 +8,15 @@ import {Router} from '@angular/router';
 @Component({
     selector: 'item-list',
     template: `
-    <h2>{{title}}</h2>    
+    <h3>{{title}}</h3>    
     <ul class="items">
         <li *ngFor="let item of items"
         [class.selected] = "item === selectedItem"
         (click) = "onSelect(item)"
-        ><span>{{item.Title}}</span></li>
+        >
+            <div class="title">{{item.Title}}</div>
+            <div class="description">{{item.Description}}</div>
+        </li>
     </ul>
 <!--
 <item-detail *ngIf="selectedItem" [item]="selectedItem"></item-detail>
@@ -45,15 +48,15 @@ export class ItemListComponent implements OnInit {
         var s = null;
         switch (this.class) {
             case "latest":
-                this.title = "Latest item";
+                this.title = "Latest items";
                 s = this.itemService.getLatest();
                 break;
             case "most-viewed":
-                this.title = "Most viewed item";
+                this.title = "Most viewed items";
                 s = this.itemService.getMostViewed();
                 break;
             case "random":
-                this.title = "Random item";
+                this.title = "Random items";
                 s = this.itemService.getRandom();
                 break;
 
