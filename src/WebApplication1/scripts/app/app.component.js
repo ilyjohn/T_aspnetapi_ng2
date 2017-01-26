@@ -25,7 +25,7 @@ System.register(['@angular/core'], function(exports_1, context_1) {
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: "appholder",
-                        template: "\n<div class=\"menu\">\n    <a class=\"home\" [routerLink]=\"['']\">Home</a>\n    | <a class=\"about\" [routerLink]=\"['about']\">About</a>\n    | <a class=\"login\" [routerLink]=\"['login']\">Log in</a>\n</div>\n<router-outlet></router-outlet>\n\n", styles: ["\n"
+                        template: "\n<div class=\"menu\">\n    <a class=\"home\" [routerLink]=\"['']\">Home</a>\n    | <a class=\"about\" [routerLink]=\"['about']\">About</a>\n    | <a class=\"login\" [routerLink]=\"['login']\">Log in</a>\n    | <a class=\"add\" [routerLink]=\"['item/edit',0]\">Add New</a>\n</div>\n<router-outlet></router-outlet>\n\n", styles: ["\n"
                         ]
                     }), 
                     __metadata('design:paramtypes', [])

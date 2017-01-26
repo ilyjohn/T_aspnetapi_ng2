@@ -55,6 +55,58 @@ namespace OpenGameListWebApp.Controllers
 
 
         }
+
+        [HttpPost]
+        public IActionResult Add([FromBody]ItemViewModel ivm)
+        {
+            if (ivm !=null)
+            {
+                var item = TinyMapper.Map<Item>(ivm);
+                item.CreatedDate = item.LastModifiedDate = DateTime.Now;
+                item.UserId = DbContext.Users.Where(u => u.UserName == "Admin").FirstOrDefault().Id;
+                DbContext.Items.Add(item);
+                DbContext.SaveChanges();
+                return new JsonResult(TinyMapper.Map<ItemViewModel>(item),DefaultJsonSettings);
+            }
+            return new StatusCodeResult(500);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]ItemViewModel ivm)
+        {
+            if (ivm!=null)
+            {
+                var item = DbContext.Items.Where(i => i.Id == id).FirstOrDefault();
+                if (item!=null)
+                {
+                    item.UserId = ivm.UserId;
+                    item.Title = ivm.Title;
+                    item.Text = ivm.Text;
+                    item.Description = ivm.Description;
+                    item.Flags = ivm.Flags;
+                    item.Notes = ivm.Notes;
+                    item.Type = ivm.Type;
+                    item.LastModifiedDate = DateTime.Now;
+                    DbContext.SaveChanges();
+                    return new JsonResult(TinyMapper.Map<ItemViewModel>(item), DefaultJsonSettings);
+                }
+
+            }
+            return NotFound(new { Error=string.Format("Item Id {0} has not been found",id)});
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var item = DbContext.Items.Where(i => i.Id == id).FirstOrDefault();
+            if (item!=null)
+            {
+                DbContext.Items.Remove(item);
+                DbContext.SaveChanges();
+                return new OkResult();
+            }
+            return NotFound(new { Error = string.Format("Item ID {0} has not been found", id) });
+        }
         #endregion
 
         #region Attribute-based Routing

@@ -1,5 +1,5 @@
 ﻿import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Item} from './item';
 
@@ -36,8 +36,31 @@ export class ItemService {
             .catch(this.handleError);
     }
 
+    add(item: Item) {
+        return this.http.post(this.baseUrl, JSON.stringify(item), this.getRequestOptions())
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
+    update(item: Item) {
+        return this.http.put(this.baseUrl + item.Id, JSON.stringify(item), this.getRequestOptions())
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
+    delete(id: number) {
+        return this.http.delete(this.baseUrl + id).catch(this.handleError);
+    }
+
+    private getRequestOptions() {
+        return new RequestOptions({
+            headers: new Headers({"Content-Type": "application/json"})
+        });
+    }
+
     private handleError(error: Response) {
         console.log(error);
         return Observable.throw(error.json().error || "Server Error.");
     }
+
 }

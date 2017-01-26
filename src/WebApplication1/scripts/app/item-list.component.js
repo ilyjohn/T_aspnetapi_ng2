@@ -57,7 +57,7 @@ System.register(['@angular/core', './item.service', '@angular/router'], function
                 ItemListComponent.prototype.onSelect = function (item) {
                     this.selectedItem = item;
                     console.log("item with id " + this.selectedItem.Id + " has been selected.");
-                    this.router.navigate(["item", this.selectedItem.Id]);
+                    this.router.navigate(["item/view", this.selectedItem.Id]);
                 };
                 __decorate([
                     core_1.Input(), 
